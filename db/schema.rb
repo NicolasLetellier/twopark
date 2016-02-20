@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219142306) do
+ActiveRecord::Schema.define(version: 20160220212948) do
+
+  create_table "parkings", force: :cascade do |t|
+    t.string   "title"
+    t.float    "price"
+    t.string   "street_name"
+    t.integer  "street_number"
+    t.integer  "postal_code"
+    t.string   "city"
+    t.string   "country"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.boolean  "available"
+    t.text     "comments"
+    t.float    "monday_start"
+    t.float    "monday_end"
+    t.float    "tuesday_start"
+    t.float    "tuesday_end"
+    t.float    "wednesday_start"
+    t.float    "wednesday_end"
+    t.float    "thursday_start"
+    t.float    "thursday_end"
+    t.float    "friday_start"
+    t.float    "friday_end"
+    t.float    "saturday_start"
+    t.float    "saturday_end"
+    t.float    "sunday_start"
+    t.float    "sunday_end"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "parkings", ["user_id"], name: "index_parkings_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +59,10 @@ ActiveRecord::Schema.define(version: 20160219142306) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.integer  "telefon"
+    t.boolean  "telefon_public"
+    t.boolean  "email_public"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
