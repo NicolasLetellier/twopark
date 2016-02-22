@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
-	layout "bootstrap_application"
+
+	def show
+		@parkings = Parking.all
+	end
 
 end
