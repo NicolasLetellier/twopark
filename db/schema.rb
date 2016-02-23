@@ -11,40 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222103634) do
+ActiveRecord::Schema.define(version: 20160223135906) do
 
   create_table "parkings", force: :cascade do |t|
     t.string   "title"
     t.float    "price"
     t.string   "street_name"
     t.integer  "street_number"
-    t.integer  "postal_code"
+    t.string   "postal_code"
     t.string   "city"
     t.string   "country"
     t.decimal  "lat"
     t.decimal  "long"
     t.boolean  "available"
     t.text     "comments"
-    t.float    "monday_start"
-    t.float    "monday_end"
-    t.float    "tuesday_start"
-    t.float    "tuesday_end"
-    t.float    "wednesday_start"
-    t.float    "wednesday_end"
-    t.float    "thursday_start"
-    t.float    "thursday_end"
-    t.float    "friday_start"
-    t.float    "friday_end"
-    t.float    "saturday_start"
-    t.float    "saturday_end"
-    t.float    "sunday_start"
-    t.float    "sunday_end"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "parkings", ["user_id"], name: "index_parkings_on_user_id"
+
+  create_table "schedules", force: :cascade do |t|
+    t.string   "day"
+    t.integer  "start_hour"
+    t.integer  "end_hour"
+    t.integer  "parking_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "start_minutes"
+    t.integer  "end_minutes"
+  end
+
+  add_index "schedules", ["parking_id"], name: "index_schedules_on_parking_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",               default: "", null: false
@@ -59,8 +58,6 @@ ActiveRecord::Schema.define(version: 20160222103634) do
     t.datetime "updated_at",                       null: false
     t.string   "name"
     t.integer  "telefon"
-    t.boolean  "telefon_public"
-    t.boolean  "email_public"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

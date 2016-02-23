@@ -1,7 +1,11 @@
 class WelcomeController < ApplicationController
 
 	def index
-		@parkings = Parking.all
+		if user_signed_in?
+			redirect_to user_path(current_user.id)
+		else
+			@parkings = Parking.all
+		end
 	end
 
 end

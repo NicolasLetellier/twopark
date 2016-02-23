@@ -62,12 +62,12 @@
           <%= bootstrap_flash %>
 
           <% if user_signed_in? %>
-            <p>Hello <%= current_user.email %> !</p>
+            <p>Hello <%= current_user.name %> !</p>
             <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
             <span> | </span>
             <%= link_to "Edit User", edit_user_registration_path %>
           <% else %>
-            <p>No User currently signed in.</p>
+            <p>Currently signed out</p>
             <%= link_to "Sign In", new_user_session_path %>
             <span> | </span>
             <%= link_to "Sign Up", new_user_registration_path %>
