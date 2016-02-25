@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
 			redirect_to user_path(current_user.id)
 		else
 			@parkings = Parking.all
+			render "index"
 		end
 	end
 

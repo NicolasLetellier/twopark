@@ -1,8 +1,7 @@
 class ParkingsController < ApplicationController
 
 	def index
-		parkings = current_user.parkings
-		render json: parkings
+		render json: Parking.all
 	end
 	
 end

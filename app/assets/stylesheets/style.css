@@ -1,15 +1,37 @@
 
+body {
+	background-color: #eee;
+}
+
 #map {
-	height: 600px;
+	height: 500px;
 	width: 100%;
 }
 
 .navbar {
 	margin-bottom: 0; /* overwrite bootstrap */
+	background-color: #00b369;
+	color: white;
 }
 
 .navbar-brand {
-	margin-right: 35px;
+	margin-right: 25px;
+	padding-top: 22px;
+}
+
+.logo-two, .logo-park {
+	font-size: 2.6em;
+	font-weight: bold;
+	text-shadow: 3px 2px 0 #027e4a;
+}
+
+.logo-two {
+	color: white;
+}
+
+.logo-park {
+/*	color: #FFEA9E; */
+	color: #ddd;
 }
 
 .navibar-user {
