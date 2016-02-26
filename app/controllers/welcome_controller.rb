@@ -4,8 +4,14 @@ class WelcomeController < ApplicationController
 		if user_signed_in?
 			redirect_to user_path(current_user.id)
 		else
-			@parkings = Parking.all
 			render "index"
+		end
+	end
+
+	def show_parking
+		@parkings = Parking.all
+		@parkings.each do |parking|
+			parking[:hours] = parking.total_hours
 		end
 	end
 

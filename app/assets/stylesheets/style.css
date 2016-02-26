@@ -20,10 +20,16 @@ main {
 }
 
 
+
 /* if mobil map => width: 80%, margin: 0 10% */
 
 .navbar {
 	margin-bottom: 0; /* overwrite bootstrap */
+	background-color: transparent;
+	border: none; /* overwrite bootstrap */
+}
+
+.navibar {
 	background-color: #00b369;
 	opacity: 0.85;
 	color: white;
@@ -50,8 +56,28 @@ main {
 	color: #ddd;
 }
 
+.opac {
+	opacity: 1;
+}
+
 .navibar-user {
 	padding: 10px;
+}
+
+.subnavibar {
+}
+
+.subnavibar-row {
+	margin-right: 0;
+}
+
+.info-parking, .search-parking, .register-parking  {
+	height: 30px;
+	background-color: #027e4a;
+	opacity: 0.75;
+	width: 100%;
+	border-radius: 5px;
+	margin: 6px;
 }
 
 .container-fluid {

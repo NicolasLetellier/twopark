@@ -1,16 +1,24 @@
 
-<div id="map"></div>
+      <div class="container-fluid subnavibar">
+        <div class="row subnavibar-row">
+          <div class="col-sm-4 col-md-3">
+            <div class="info-parking">
+            </div>
+          </div>
+          <div class="col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6">
+            <div class="search-parking">
+            </div>
+            <div class="register-parking">
+            </div>
+          </div>
+        </div>
+        <p>&copy; twopark 2016</p>
+      </div>
+    </div>
 
+    <div class="container-fluid">
 
-<h2>hello again <%= current_user.name %>, you're on users#show</h2>
+      <div class="main">
 
-<h3>All the parkings:</h3>
-<ul>
-	<% @parkings.each do |parking| %>
-		<li>
-			<h3><%= parking.title %></h3>
-			<p>Price : <%= parking.price %> €</p>
-			<hr>
-		</li>
-	<% end %>
-</ul>
+				<div id="map"></div>
+				

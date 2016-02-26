@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: "welcome#index"
 
+  get "/welcome/show_parking" => "welcome#show_parking"
+
   resources :users, only: [:show] do
     resources :parkings, only: [:show]
   end
