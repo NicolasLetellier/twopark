@@ -1,18 +1,34 @@
+body, html {
+	height: 100%;
+	width: 100%;
+}
 
 body {
 	background-color: #eee;
 }
 
-#map {
-	height: 500px;
-	width: 100%;
+main {
+	position: relative;
 }
+
+#map {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+
+/* if mobil map => width: 80%, margin: 0 10% */
 
 .navbar {
 	margin-bottom: 0; /* overwrite bootstrap */
 	background-color: #00b369;
+	opacity: 0.85;
 	color: white;
 }
+
 
 .navbar-brand {
 	margin-right: 25px;

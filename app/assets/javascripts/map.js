@@ -95,6 +95,15 @@
 			{"featureType":"transit.line","stylers":[{"visibility":"off"}]}];
 		this.googleMap = new google.maps.Map(document.getElementById("map"), {
 			zoom: 14,
+			mapTypeControl: true,
+    	mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: google.maps.ControlPosition.LEFT_BOTTOM,
+        mapTypeIds: [
+        google.maps.MapTypeId.ROADMAP,
+        google.maps.MapTypeId.SATELLITE
+      	]
+    	},
 			center: new google.maps.LatLng(this.coordinates.latitude, this.coordinates.longitud),
 		});
 		this.googleMap.setOptions({styles: stylesArrayPaledawn});
