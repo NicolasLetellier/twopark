@@ -39,7 +39,7 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body>
+  <body data-logged="<%= user_signed_in? %>">
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid navibar">

@@ -10,9 +10,6 @@ class WelcomeController < ApplicationController
 
 	def show_parking
 		@parkings = Parking.all
-		@parkings.each do |parking|
-			parking[:hours] = parking.total_hours
-		end
 	end
 
 end

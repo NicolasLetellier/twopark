@@ -6,5 +6,4 @@ json.show_parking @parkings do |parking|
 	json.lat parking.lat
 	json.long parking.long
 	json.available parking.available
-	json.hours parking.total_hours
 end

@@ -37,7 +37,13 @@
 	};
 
 	Map.prototype.fetchParkings = function () {
-		var promise = $.get("/parkings");
+		var loggedIn = $("body").attr("data-logged");
+		if (loggedIn) {
+			var url = "/parkings.json";
+		} else {
+			var url = "/welcome/show_parking.json";
+		}
+		var promise = $.get(url);
 		promise.done(this.dropMarkers.bind(this));
 	};
 
@@ -48,14 +54,14 @@
   	this.markers = [];
 	};
 
-	Map.prototype.dropMarkers = function (parkings) {
+	Map.prototype.dropMarkers = function (parkingsJson) {
 		this.clearMarkers();
 		// add all parkings objects to an array
-		for (var i = 0; i < parkings.length; i++) {
-			if (parkings[i].available) {
-				var position = {lat: parseFloat(parkings[i].lat), lng: parseFloat(parkings[i].long)};
-				var title = parkings[i].title;
-				var parkingId = parkings[i].id;
+		for (var i = 0; i < parkingsJson.show_parking.length; i++) {
+			if (parkingsJson.show_parking[i].available) {
+				var position = {lat: parseFloat(parkingsJson.show_parking[i].lat), lng: parseFloat(parkingsJson.show_parking[i].long)};
+				var title = parkingsJson.show_parking[i].title;
+				var parkingId = parkingsJson.show_parking[i].id;
 				this.createMarkersWithTimeout(position, title, parkingId, i*80);
 			}
 		};
@@ -63,10 +69,40 @@
 
 	Map.prototype.createMarkersWithTimeout = function (position, title, parkingId, timeout) {
 		var that = this;
+		var url = "";
+		switch (parkingId % 5) {
+			case 0:
+				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+				break;
+			case 1:
+				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+				break;
+			case 2:
+				url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
+				break;
+			case 3:
+				url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
+				break;
+			case 4:
+				url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
+				break;
+		}
 		window.setTimeout(function(){
+			var image = {
+				url: url,
+				size: new google.maps.Size(24, 38),
+    		origin: new google.maps.Point(0, 0),
+    		anchor: new google.maps.Point(12, 38)
+			};
+			var shape = {
+				coords: [0, 6, 6, 0, 18, 0, 24, 6, 24, 18, 12, 38, 0, 18],
+				type: "poly"
+			};
 			var marker = new google.maps.Marker({
 				position: position,
 				map: that.googleMap,
+				icon: image,
+				shape: shape,
 				title: title,
 				parkingId: parkingId,
 				animation: google.maps.Animation.DROP
@@ -79,7 +115,7 @@
 	Map.prototype.clickMarker = function () {
 		// .html >> sobresecribe ant
 		console.log("bueno");
-	}
+	};
 
 	Map.prototype.displayMap = function () {
 		var stylesArrayPaledawn = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},
