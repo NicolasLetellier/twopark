@@ -8,6 +8,8 @@
 		};
 		this.googleMap = {};
 		this.markers = [];
+		this.parkings = [];
+		this.loggedIn = $("body").attr("data-logged");
 	};
 
 	Map.prototype.getLocation = function () {
@@ -37,9 +39,8 @@
 	};
 
 	Map.prototype.fetchParkings = function () {
-		var loggedIn = $("body").attr("data-logged");
-		if (loggedIn) {
-			var url = "/parkings.json";
+		if (this.loggedIn === "true") {
+			var url = "/parkings/show_parking.json";
 		} else {
 			var url = "/welcome/show_parking.json";
 		}
@@ -56,9 +57,9 @@
 
 	Map.prototype.dropMarkers = function (parkingsJson) {
 		this.clearMarkers();
-		// add all parkings objects to an array
 		for (var i = 0; i < parkingsJson.show_parking.length; i++) {
 			if (parkingsJson.show_parking[i].available) {
+				this.parkings.push(parkingsJson.show_parking[i]);
 				var position = {lat: parseFloat(parkingsJson.show_parking[i].lat), lng: parseFloat(parkingsJson.show_parking[i].long)};
 				var title = parkingsJson.show_parking[i].title;
 				var parkingId = parkingsJson.show_parking[i].id;
@@ -69,23 +70,10 @@
 
 	Map.prototype.createMarkersWithTimeout = function (position, title, parkingId, timeout) {
 		var that = this;
-		var url = "";
-		switch (parkingId % 5) {
-			case 0:
-				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
-				break;
-			case 1:
-				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
-				break;
-			case 2:
-				url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
-				break;
-			case 3:
-				url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
-				break;
-			case 4:
-				url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
-				break;
+		if (this.loggedIn === "true") {
+			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+		} else {
+			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
 		}
 		window.setTimeout(function(){
 			var image = {
@@ -114,6 +102,11 @@
 
 	Map.prototype.clickMarker = function () {
 		// .html >> sobresecribe ant
+		if (this.loggedIn === "true") {
+
+		} else {
+			var divDisplay = $(".info-parking");
+		}
 		console.log("bueno");
 	};
 

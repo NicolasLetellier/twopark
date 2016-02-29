@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get "/welcome/show_parking" => "welcome#show_parking"
 
+  get "/parkings/show_parking" => "parkings#show_parking"
+
   resources :users, only: [:show] do
     resources :parkings, only: [:show]
   end
