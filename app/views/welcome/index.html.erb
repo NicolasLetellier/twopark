@@ -1,8 +1,19 @@
 			<div class="container-fluid subnavibar">
+			  <%= bootstrap_flash %>
 			  <div class="row subnavibar-row">
-			    <div class="col-sm-4 col-md-3">
+			    <div class="col-sm-6 col-md-5 col-lg-4">
 			      <div class="info-parking">
 			      </div>
+			    </div>
+			    <div class="col-sm-6 col-md-5 col-md-offset-2 col-lg-4 col-lg-offset-4">
+			    	<div class="invitation">
+				    	<p class="invitation-title">Quieres saber más detalles sobre cada parking?</p>
+				    	<p class="invitation-links">
+					    	<%= link_to "Iniciar sessión", new_user_session_path %>
+		            <span> | </span>
+		            <%= link_to "Nuevo usuario", new_user_registration_path %>
+		          </p>
+	          </div>
 			    </div>
 			  </div>
 		  </div>

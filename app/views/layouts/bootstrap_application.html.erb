@@ -44,23 +44,26 @@
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid navibar">
         <div class="container">
-          <a class="navbar-brand" href="/"><span class="logo-two opac">two</span><span class="logo-park opac">park</span></a>
+          <a class="navbar-brand" href="/"><span class="logo-two">two</span><span class="logo-park">park</span></a>
           <div class="navbar-right navibar-user">
             <% if user_signed_in? %>
-              <p>Usuario: <%= current_user.name %></p>
-              <%= link_to "cerrar sessión", destroy_user_session_path, method: :delete %>
-              <span> | </span>
-              <%= link_to "modificar datos", edit_user_registration_path %>
+              <p class="user-logged-in">Usuario: <%= current_user.name %></p>
+              <p class="navibar-user-links">
+                <%= link_to "cerrar sesión", destroy_user_session_path, method: :delete %>
+                <span> | </span>
+                <%= link_to "modificar datos", edit_user_registration_path %>
+              </p>
             <% else %>
-              <p>Sessión cerrada</p>
-              <%= link_to "Iniciar sessión", new_user_session_path %>
-              <span> | </span>
-              <%= link_to "Nuevo usuario", new_user_registration_path %>
+              <p class="hint-logged-out">Sesión cerrada</p>
+              <p class="navibar-user-links">
+                <%= link_to "Iniciar sesión", new_user_session_path %>
+                <span> | </span>
+                <%= link_to "Nuevo usuario", new_user_registration_path %>
+              </p>
             <% end %>
           </div>
         </div>
       </div>
-      <%= bootstrap_flash %>
 
         <%= yield %>
 

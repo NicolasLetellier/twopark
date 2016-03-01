@@ -30,19 +30,19 @@ main {
 }
 
 .navibar {
-	background-color: #00b369;
-	opacity: 0.85;
+/*	background-color: #00b369;*/
+	background-color: rgba(0,179,105,0.85);
 	color: white;
 }
 
 
 .navbar-brand {
 	margin-right: 25px;
-	padding-top: 22px;
+	padding-top: 24px;
 }
 
 .logo-two, .logo-park {
-	font-size: 2.6em;
+	font-size: 3em;
 	font-weight: bold;
 	text-shadow: 3px 2px 0 #027e4a;
 }
@@ -56,37 +56,98 @@ main {
 	color: #ddd;
 }
 
-.opac {
-	opacity: 1;
-}
-
-.navibar-user {
-	padding: 10px;
-}
-
-.subnavibar {
-}
-
-.subnavibar-row {
-	margin-right: 0;
-}
-
-.info-parking, .search-parking, .register-parking  {
-	height: 30px;
-	background-color: #027e4a;
-	opacity: 0.75;
-	width: 100%;
-	border-radius: 5px;
-	margin: 6px;
-}
-
 .container-fluid {
 	padding: 0; /* overwrite bootstrap */
 }
 
+.navibar-user {
+	padding: 10px 10px 8px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.user-logged-in, .hint-logged-out {
+}
+
+.navibar-user-links a {
+	color: #ddd;
+}
+
 .alert {
-	margin-top: 15px;
+	margin-top: 12px;
 	max-width: 600px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.subnavibar {
+	border: none; /* overwrite bootstrap */
+	background-color: rgba(255,255,255,0.3);
+}
+
+.subnavibar-row {
+	padding-right: 15px;
+}
+
+.info-parking, .search-parking, .register-parking  {
+	background-color: rgba(2,126,74,0.75);
+	width: 100%;
+	border-radius: 5px;
+	margin: 6px 6px 2px 6px;
+	padding: 8px 8px 4px 8px;
+	color: white;
+	display: none;
+}
+
+.register-parking a {
+	font-size: 18px;
+	text-align: center;
+}
+
+.register-parking a:hover {
+	text-decoration: underline;
+}
+
+.parking-title {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0 0 8px;
+}
+
+.parking-price, .parking-hours {
+	font-size: 18px;
+	margin: 0 0 8px;
+}
+
+.info-parking hr {
+	margin: 0 0 4px 0;
+}
+
+.invitation {
+	background-color: rgba(255,234,158,0.75);
+	width: 100%;
+	border-radius: 5px;
+	margin: 6px;
+	padding: 6px 6px 2px 6px;
+	display: none;
+}
+
+.invitation-title {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+}
+
+.invitation-links {
+	text-align: center;
+	font-size: 24px;
+}
+
+.schedule-title {
+	font-weight: bold;
+}
+
+.schedule-details {
+	line-height: 0.7em;
 }

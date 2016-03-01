@@ -1,5 +1,6 @@
 
       <div class="container-fluid subnavibar">
+        <%= bootstrap_flash %>
         <div class="row subnavibar-row">
           <div class="col-sm-4 col-md-3">
             <div class="info-parking">
@@ -9,6 +10,7 @@
             <div class="search-parking">
             </div>
             <div class="register-parking">
+              <%= link_to "Anunciar un parking", new_parking_path %>
             </div>
           </div>
         </div>

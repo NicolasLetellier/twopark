@@ -55,20 +55,33 @@
   	this.markers = [];
 	};
 
+	// var Parking = function (attrs) {
+	// 	this._attrs = attrs;
+	// 	this.title = this._attrs.title;
+	// };
+
+	// Parking.prototype.get = function(key) {
+	// 	return this._attrs[key];
+	// };
+
 	Map.prototype.dropMarkers = function (parkingsJson) {
 		this.clearMarkers();
 		for (var i = 0; i < parkingsJson.show_parking.length; i++) {
 			if (parkingsJson.show_parking[i].available) {
-				this.parkings.push(parkingsJson.show_parking[i]);
+				// var parking = new Parking(parkingsJson.show_parking[i]);
+				// parking.title
+				// parking.get("title")
+				// this.parkings.push(parking);
+				
 				var position = {lat: parseFloat(parkingsJson.show_parking[i].lat), lng: parseFloat(parkingsJson.show_parking[i].long)};
 				var title = parkingsJson.show_parking[i].title;
-				var parkingId = parkingsJson.show_parking[i].id;
-				this.createMarkersWithTimeout(position, title, parkingId, i*80);
+				var parking = parkingsJson.show_parking[i];
+				this.createMarkersWithTimeout(position, title, parking, i*80);
 			}
 		};
 	};
 
-	Map.prototype.createMarkersWithTimeout = function (position, title, parkingId, timeout) {
+	Map.prototype.createMarkersWithTimeout = function (position, title, parking, timeout) {
 		var that = this;
 		if (this.loggedIn === "true") {
 			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
@@ -92,7 +105,7 @@
 				icon: image,
 				shape: shape,
 				title: title,
-				parkingId: parkingId,
+				parking: parking,
 				animation: google.maps.Animation.DROP
 			});
 			marker.addListener("click", that.clickMarker);
@@ -101,13 +114,53 @@
 	};
 
 	Map.prototype.clickMarker = function () {
-		// .html >> sobresecribe ant
-		if (this.loggedIn === "true") {
-
+		var divDisplay = $(".info-parking");
+		var divRegister = $(".register-parking");
+		var htmlContent = "<p class='parking-title'>"
+			+ this.parking.title
+			+ "</p>"
+			+ "<p class='parking-price'>Precio al mes: <strong>"
+			+ this.parking.price
+			+ " €</strong></p>"
+			+ "<hr>";
+		if ($("body").attr("data-logged") === "true") {
+			var schedule = "";
+			for (var i = 0 ; i < this.parking.schedules.length ; i++ ) {
+				schedule += "<p class='schedule-details'><span class='schedule-day'>"
+				+ this.parking.schedules[i].day
+				+ " : </span>"
+				+ "<span class='schedule.hours'>"
+				+ this.parking.schedules[i].start_hour
+				+ ":"
+				+ this.parking.schedules[i].start_minutes
+				+ " / "
+				+ this.parking.schedules[i].end_hour
+				+ ":"
+				+ this.parking.schedules[i].end_minutes
+				+ "</span></p>";
+			}
+			htmlContent += "<p class='schedule-title'>Disponibilidad:</p>"
+				+ schedule;
 		} else {
-			var divDisplay = $(".info-parking");
+			var divInvitation = $(".invitation");
+			htmlContent += "<p class='parking-hours'>Horas disponibles durante la semana: <strong>"
+				+ this.parking.hours
+				+ "</strong>h";
+			divInvitation.slideDown(250);
 		}
-		console.log("bueno");
+		if (divDisplay.html() != "") {
+			divDisplay.fadeOut(150, function(){
+				divDisplay.html(htmlContent);
+			});
+		} else {
+			divDisplay.html(htmlContent);
+		}
+		divDisplay.slideDown(250);
+		divRegister.slideDown(250);
+	};
+
+	Map.prototype.displayParkingWelcome = function (marker) {
+		debugger
 	};
 
 	Map.prototype.displayMap = function () {

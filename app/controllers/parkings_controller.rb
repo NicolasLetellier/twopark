@@ -7,4 +7,7 @@ class ParkingsController < ApplicationController
 		@parkings = Parking.all
 	end
 
+	def new
+	end
+
 end
