@@ -116,6 +116,7 @@
 	Map.prototype.clickMarker = function () {
 		var divDisplay = $(".info-parking");
 		var divRegister = $(".register-parking");
+		var divSearch = $(".search-parking");
 		var htmlContent = "<p class='parking-title'>"
 			+ this.parking.title
 			+ "</p>"
@@ -157,6 +158,7 @@
 		}
 		divDisplay.slideDown(250);
 		divRegister.slideDown(250);
+		divSearch.slideDown(250);
 	};
 
 	Map.prototype.displayParkingWelcome = function (marker) {

@@ -1,0 +1,64 @@
+<div class="container">
+
+	<h2 class="register-title">Registra un parking:</h2>
+
+	<%= form_for @parking, url: {action: "create"}, html: {class: "register-form"} do |f| %>
+
+		<%= f.label(:title, "Titulo:") %>
+		<%= f.text_area(:title, size: "40x2") %>
+		<br>
+
+		<%= f.label(:price, "Precio al mes:") %>
+		<%= f.number_field(:price) %>
+		<br>
+
+		<%= f.label(:street_name, "Nombre de la calle:") %>
+		<%= f.text_field(:street_name) %>
+		<br>
+
+		<%= f.label(:street_number, "Numero de la calle:") %>
+		<%= f.text_field(:street_number) %>
+		<br>
+
+		<%= f.label(:postal_code, "Codigo postal:") %>
+		<%= f.text_field(:postal_code) %>
+		<br>
+
+		<%= f.label(:city, "Ciudad:") %>
+		<%= f.text_field(:city) %>
+		<br>
+
+		<%= f.label(:country, "País:") %>
+		<%= f.text_field(:country) %>
+		<br>
+
+		<%= f.label(:lat, "Latitud:") %>
+		<%= f.number_field(:lat, options = {step: 0.000001}) %>
+		<br>
+		<%= f.label(:long, "Longitud:") %>
+		<%= f.number_field(:long, options = {step: 0.000001}) %>
+		<br>
+
+		<%= f.check_box(:available) %>
+		<%= f.label(:available, "Parking visible para los otros usuarios") %>
+		<br>
+
+		<%= f.label(:comments, "Comentarios:") %>
+		<%= f.text_area(:comments, size: "50x4") %>
+		<br>
+
+		<%= f.hidden_field(:user_id, :value => current_user.id) %>
+
+			<%#= fields_for @parking.schedules do |schedule_form| %>
+
+				<%#= schedule_form.text_field(:day) %>
+
+		<p class="next-step-register">En el siguiente paso te pediremos el horario de disponibilidad de tu parking</p>
+
+		<%= f.submit("Registrar") %>
+
+
+	<% end %>
+
+
+</div>

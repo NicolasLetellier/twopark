@@ -1,0 +1,7 @@
+<div class="container">
+
+	<h2><%= @parking.title %>
+
+	<h2 class="register-title">Entra los horarios:</h2>
+
+	<%= form_for @parking, url: {action: "create"}, html: {class: "register-form"} do |f| %>
