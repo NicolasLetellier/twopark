@@ -142,6 +142,7 @@
 			}
 			htmlContent += "<p class='schedule-title'>Disponibilidad:</p>"
 				+ schedule;
+				// + "<p class='info-parking-more' data-parking='" + this.parking.id + "'>más información...</p>";
 		} else {
 			var divInvitation = $(".invitation");
 			htmlContent += "<p class='parking-hours'>Horas disponibles durante la semana: <strong>"

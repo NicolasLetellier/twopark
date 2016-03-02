@@ -8,17 +8,24 @@ class ParkingsController < ApplicationController
 	end
 
 	def new
-		@parking = Parking.new
+		if !user_signed_in?
+			redirect_to root_path
+		else
+			@parking = Parking.new
+		end
 	end
 
 	def create
 		@parking = Parking.new(parking_params)
 		if @parking.save
-			flash[:alert] = "Parking creado correctamente"
+			flash[:notice] = "Parking creado correctamente"
 			redirect_to action: 'new', controller: 'schedules', parking_id: @parking.id
 		else
 			render "new"
 		end
+	end
+
+	def schedules
 	end
 
 	def update

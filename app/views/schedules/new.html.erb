@@ -1,7 +1,41 @@
 <div class="container">
+	<%= bootstrap_flash %>
 
-	<h2><%= @parking.title %>
+	<h2>" <%= @parking.title %> "</h2>
 
-	<h2 class="register-title">Entra los horarios:</h2>
+	<h2 class="register-schedule-title">Entra los horarios de disponibilidad:</h2>
 
-	<%= form_for @parking, url: {action: "create"}, html: {class: "register-form"} do |f| %>
+	<p class="register-schedule-instructions">Según cada dia de la semana, SIN grabar los dias para los cuales no hay disponibilidad</p>
+
+	<%= form_for @schedule, url: {action: "create"}, html: {class: "register-schedule-form"} do |f| %>
+
+		<table class="table-schedule">
+			<tr>
+				<th class="day-element">Dia</th>
+				<th class="time-element">hora principio</th>
+				<th class="time-element">minutos principio</th>
+				<th class="time-element">hora fin</th>
+				<th class="time-element">minutos fin</th>
+			</tr>
+			<tr>
+				<td> <select name="schedule[day]" id="schedule_day">
+					<option value="lunes">lunes</option>
+					<option value="martes">martes</option>
+					<option value="miercoles">miercoles</option>
+					<option value="jueves">jueves</option>
+					<option value="viernes">viernes</option>
+					<option value="sabado">sabado</option>
+					<option value="domingo">domingo</option>
+				</td>
+				<td><%= f.number_field(:start_hour) %></td>
+				<td><%= f.number_field(:start_minutes) %></td>
+				<td><%= f.number_field(:end_hour) %></td>
+				<td><%= f.number_field(:end_minutes) %></td>
+				<td><%= f.submit("grabar") %></td>
+				<%= f.hidden_field(:parking_id, :value => @parking.id) %>
+			</tr>
+		</table>
+
+		<button class="register-schedule-button-back"><%= link_to "Hecho, volver a la pagina principal para visualizar mi parking en el mapa", parkings_path %></button>
+
+	<% end %>

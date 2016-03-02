@@ -1,4 +1,5 @@
 <div class="container">
+	<%= bootstrap_flash %>
 
 	<h2 class="register-title">Registra un parking:</h2>
 
@@ -49,13 +50,12 @@
 
 		<%= f.hidden_field(:user_id, :value => current_user.id) %>
 
-			<%#= fields_for @parking.schedules do |schedule_form| %>
-
-				<%#= schedule_form.text_field(:day) %>
 
 		<p class="next-step-register">En el siguiente paso te pediremos el horario de disponibilidad de tu parking</p>
 
 		<%= f.submit("Registrar") %>
+
+		<p class="register-back"><%= link_to('Volver atrás', parkings_path) %></p>
 
 
 	<% end %>

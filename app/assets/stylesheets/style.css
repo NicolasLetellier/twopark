@@ -94,12 +94,12 @@ main {
 	border-radius: 5px;
 	margin: 8px 6px 2px 6px;
 	color: white;
-	display: none;
 }
 
 .info-parking {
 	width: 100%;
 	padding: 8px 8px 4px 8px;
+	display: none;
 }
 
 .register-parking {
@@ -108,11 +108,12 @@ main {
 	margin-left: auto;
 	margin-right: auto;
 	width: 250px;
+	display: none;
 }
 
 .search-parking {
 	width: 100%;
-	height: 10px;
+	padding: 8px 4px 4px 8px;
 }
 
 .register-parking a {
@@ -140,6 +141,78 @@ main {
 
 .info-parking hr {
 	margin: 0 0 4px 0;
+}
+
+.search-parking h3 {
+	font-size: 20px;
+	margin: 0 0 10px;
+}
+
+.search-parking-schedule {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.search-parking-headers {
+	font-style: italic;
+}
+
+.header-day {
+	display: inline-block;
+	width: 60px;
+	text-align: center;
+}
+.header-de {
+	display: inline-block;
+	width: 65px;
+	text-align: center;
+}
+.header-slash {
+	display: inline-block;
+	width: 10px;
+	text-align: center;
+}
+.header-hasta {
+	display: inline-block;
+	width: 65px;
+	text-align: center;
+}
+.header-start-hour {
+	display: inline-block;
+	margin-left: 65px;
+	width: 35px;
+	text-align: center;
+}
+.header-start-minutes {
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+}
+.header-end-hour {
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+}
+.header-end-minutes {
+	display: inline-block;
+	width: 35px;
+	text-align: center;
+}
+
+.search-parking-details input {
+	color: #444;
+	width: 35px;
+}
+
+.details-day {
+	display: inline-block;
+	width: 60px;
+} 
+
+.wrap-btn {
+	width: 65px;
+	margin: 4px auto 2px auto;
 }
 
 .invitation {
@@ -184,4 +257,51 @@ main {
 
 .register-form label {
 	min-width: 180px;
+	vertical-align: top;
+	margin-bottom: 12px;
+}
+
+
+.register-back {
+	margin: 10px 0 10px;
+}
+
+.register-schedule-title {
+	margin-top: 30px;
+	text-decoration: underline;
+}
+
+.register-schedule-instructions {
+	margin: 15px 0 20px;
+	font-size: 18px;
+}
+
+#schedule_day,
+.table-schedule .day-element {
+	margin: 0 3px 0 3px;
+	min-height: 30px;
+	text-align: center;
+}
+
+#schedule_start_hour,
+#schedule_start_minutes,
+#schedule_end_hour,
+#schedule_end_minutes,
+.table-schedule .time-element {
+	margin: 0 3px 0 3px;
+	width: 80px;
+	min-height: 30px;
+	text-align: center;
+}
+
+.register-schedule-button-back {
+	margin: 20px 0 0;
+}
+
+.register-schedule-button-back a {
+	color: #444;
+}
+
+.register-schedule-button-back a:hover {
+	text-decoration: none;
 }
