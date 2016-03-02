@@ -10,6 +10,7 @@
 		this.markers = [];
 		this.parkings = [];
 		this.loggedIn = $("body").attr("data-logged");
+		this.search = [];
 	};
 
 	Map.prototype.getLocation = function () {
@@ -84,7 +85,11 @@
 	Map.prototype.createMarkersWithTimeout = function (position, title, parking, timeout) {
 		var that = this;
 		if (this.loggedIn === "true") {
-			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+			if (parking.my_parking) {
+				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+			} else {
+				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+			}
 		} else {
 			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
 		}
@@ -141,7 +146,8 @@
 				+ "</span></p>";
 			}
 			htmlContent += "<p class='schedule-title'>Disponibilidad:</p>"
-				+ schedule;
+				+ schedule
+				+ "<p>N. usuario: " + this.parking.user_id + "</p>";
 				// + "<p class='info-parking-more' data-parking='" + this.parking.id + "'>más información...</p>";
 		} else {
 			var divInvitation = $(".invitation");
@@ -162,9 +168,6 @@
 		divSearch.slideDown(250);
 	};
 
-	Map.prototype.displayParkingWelcome = function (marker) {
-		debugger
-	};
 
 	Map.prototype.displayMap = function () {
 		var stylesArrayPaledawn = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},
@@ -193,6 +196,27 @@
 		});
 		this.googleMap.setOptions({styles: stylesArrayPaledawn});
 		this.fetchParkings();
+	};
+
+	Map.prototype.clickSearch = function () {
+		$(".search-parking-button").on("click", this.fetchSearch.bind(this));
+	};
+
+	Map.prototype.fetchSearch = function (e) {
+		e.preventDefault();
+		var weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+		for (var i = 0 ; i < weekDays.length ; i++){
+			var objectSchedule = {};
+			var day = weekDays[i];
+			var liDay = $("#" + day);
+			objectSchedule.day = liDay.children().first().attr("class");
+			var liTimeElements = liDay.find("input");
+			for (var j = 0 ; j < liTimeElements.length ; j++){
+				var key = $(liTimeElements[j]).attr("class");
+				objectSchedule[key] = $(liTimeElements[j]).val();
+			}
+			this.search.push(objectSchedule);
+		}
 	};
 
 })();

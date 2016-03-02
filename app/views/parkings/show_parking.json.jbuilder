@@ -8,6 +8,7 @@ json.show_parking @parkings do |parking|
 	json.available parking.available
 	json.hours parking.total_hours
 	json.my_parking current_user.id == parking.user_id
+	json.user_id parking.user_id
 
 	json.schedules parking.schedules do |schedule|
 		json.day schedule.day

@@ -14,72 +14,75 @@
           <div class="col-sm-4 col-md-3 col-md-offset-1">
             <div class="search-parking">
               <h3>Busca un parking por horarios:</h3>
-              <ul class="search-parking-schedule">
-                <li class="search-parking-headers">
-                  <span class="header-day">Dia</span>
-                  <span class="header-de">De:</span>
-                  <span class="header-slash">/</span>
-                  <span class="header-hasta">Hasta:</span>
-                </li>
-                <li class="search-parking-headers">
-                  <span class="header-start-hour">Hora</span>
-                  <span class="header-start-minutes">Min.</span>
-                  <span class="header-end-hour">Hora</span>
-                  <span class="header-end-minutes">Min.</span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Lunes</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="mon-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="mon-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="mon-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="mon-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Martes</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="tue-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="tue-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="tue-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="tue-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Miercoles</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="wed-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="wed-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="wed-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="wed-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Jueves</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="thu-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="thu-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="thu-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="thu-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Viernes</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="fri-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="fri-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="fri-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="fri-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Sabado</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="sat-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="sat-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="sat-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="sat-end-minutes"></span>
-                </li>
-                <li class="search-parking-details">
-                  <span class="details-day">Domingo</span>
-                  <span class="details-start-hour"><input type="number" min="0" max="24" step="1" id="sun-start-hour"></span>
-                  <span class="details-start-minutes"><input type="number" min="0" max="59" step="1" id="sun-start-minutes"></span>
-                  <span class="details-end-hour"><input type="number" min="0" max="24" step="1" id="sun-end-hour"></span>
-                  <span class="details-end-minutes"><input type="number" min="0" max="59" step="1" id="sun-end-minutes"></span>
-                </li>
-              
-              </ul>
-              <div class="wrap-btn">
-                <button class="btn btn-default btn-sm search-parking-button">Buscar</button>
+              <div class="wrap-search">
+                <ul class="search-parking-schedule">
+                  <li class="search-parking-headers">
+                    <span class="header-day">Dia</span>
+                    <span class="header-de">De:</span>
+                    <span class="header-slash">/</span>
+                    <span class="header-hasta">Hasta:</span>
+                  </li>
+                  <li class="search-parking-headers">
+                    <span class="header-start-hour">Hora</span>
+                    <span class="header-start-minutes">Min.</span>
+                    <span class="header-end-hour">Hora</span>
+                    <span class="header-end-minutes">Min.</span>
+                  </li>
+                  <li class="search-parking-details" id="monday">
+                    <span class="monday">Lunes</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="tuesday">
+                    <span class="tuesday">Martes</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="wednesday">
+                    <span class="wednesday">Miercoles</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="thursday">
+                    <span class="thursday">Jueves</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="friday">
+                    <span class="friday">Viernes</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="saturday">
+                    <span class="saturday">Sabado</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+                  <li class="search-parking-details" id="sunday">
+                    <span class="sunday">Domingo</span>
+                    <input type="number" min="0" max="24" step="1" class="start_hour">
+                    <input type="number" min="0" max="59" step="1" class="start_minutes">
+                    <input type="number" min="0" max="24" step="1" class="end_hour"></span>
+                    <input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+                  </li>
+
+                
+                </ul>
+                <div class="wrap-btn">
+                  <button class="btn btn-default btn-sm search-parking-button">Buscar</button>
+                </div>
               </div>
             </div>
 

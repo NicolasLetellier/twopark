@@ -114,6 +114,7 @@ main {
 .search-parking {
 	width: 100%;
 	padding: 8px 4px 4px 8px;
+	display: none;
 }
 
 .register-parking a {
@@ -146,16 +147,22 @@ main {
 .search-parking h3 {
 	font-size: 20px;
 	margin: 0 0 10px;
+	width: 100%;
+	text-align: center;
 }
 
 .search-parking-schedule {
 	list-style-type: none;
-	margin: 0;
 	padding: 0;
 }
 
 .search-parking-headers {
 	font-style: italic;
+	margin-bottom: 2px;
+}
+
+.search-parking-details {
+	margin-bottom: 2px;
 }
 
 .header-day {
@@ -180,7 +187,7 @@ main {
 }
 .header-start-hour {
 	display: inline-block;
-	margin-left: 65px;
+	margin-left: 63px;
 	width: 35px;
 	text-align: center;
 }
@@ -203,9 +210,10 @@ main {
 .search-parking-details input {
 	color: #444;
 	width: 35px;
+	border: none;
 }
 
-.details-day {
+.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday {
 	display: inline-block;
 	width: 60px;
 } 
@@ -213,6 +221,11 @@ main {
 .wrap-btn {
 	width: 65px;
 	margin: 4px auto 2px auto;
+}
+
+.wrap-search {
+	margin: 0 auto 0 auto;
+	width: 216px;
 }
 
 .invitation {
