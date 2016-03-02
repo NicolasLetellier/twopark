@@ -46,7 +46,12 @@
 			var url = "/welcome/show_parking.json";
 		}
 		var promise = $.get(url);
-		promise.done(this.dropMarkers.bind(this));
+		promise.done(this.filterParkings.bind(this));
+	};
+
+	Map.prototype.filterParkings = function (parkingsJson) {
+		this.parkings = parkingsJson.show_parking;
+		this.dropMarkers();		
 	};
 
 	Map.prototype.clearMarkers = function () {
@@ -65,28 +70,61 @@
 	// 	return this._attrs[key];
 	// };
 
-	Map.prototype.dropMarkers = function (parkingsJson) {
+	Map.prototype.clickSearch = function () {
+		$(".search-parking-button").on("click", this.fetchSearch.bind(this));
+	};
+
+	Map.prototype.fetchSearch = function (e) {
+		e.preventDefault();
+		var weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+		for (var i = 0 ; i < weekDays.length ; i++){
+			var objectSchedule = {};
+			var day = weekDays[i];
+			var liDay = $("#" + day);
+			objectSchedule.day = liDay.children().first().attr("class");
+			var liTimeElements = liDay.find("input");
+			for (var j = 0 ; j < liTimeElements.length ; j++){
+				var key = $(liTimeElements[j]).attr("class");
+				objectSchedule[key] = $(liTimeElements[j]).val();
+			}
+			this.search.push(objectSchedule);
+		}
+		this.dropMarkers();
+	};
+
+	Map.prototype.decimalHours = function (hour, minutes) {
+		return (hour + (minutes / 60));
+	};
+
+	Map.prototype.searchKey = function (parking) {
+		var schedules = parking.schedules;
+		var search = this.search;
+		for (var i = 0 ; i < this.search.length ; i++ ){
+			debugger
+		}
+		return parking;
+	};
+
+	Map.prototype.dropMarkers = function () {
 		this.clearMarkers();
-		for (var i = 0; i < parkingsJson.show_parking.length; i++) {
-			if (parkingsJson.show_parking[i].available) {
-				// var parking = new Parking(parkingsJson.show_parking[i]);
-				// parking.title
-				// parking.get("title")
-				// this.parkings.push(parking);
-				
-				var position = {lat: parseFloat(parkingsJson.show_parking[i].lat), lng: parseFloat(parkingsJson.show_parking[i].long)};
-				var title = parkingsJson.show_parking[i].title;
-				var parking = parkingsJson.show_parking[i];
-				this.createMarkersWithTimeout(position, title, parking, i*80);
+		var parkings = this.parkings;
+		for (var i = 0; i < parkings.length; i++) {
+			if (parkings[i].available) {	
+				if (this.search.length > 0) {
+					var parking = this.searchKey(parkings[i]);
+				} else {
+					var parking = parkings[i];
+				}
+				this.createMarkersWithTimeout(parking, i*80);
 			}
 		};
 	};
 
-	Map.prototype.createMarkersWithTimeout = function (position, title, parking, timeout) {
+	Map.prototype.createMarkersWithTimeout = function (parking, timeout) {
 		var that = this;
-		if (this.loggedIn === "true") {
+		if (that.loggedIn === "true") {
 			if (parking.my_parking) {
-				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+				var url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
 			} else {
 				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
 			}
@@ -105,11 +143,11 @@
 				type: "poly"
 			};
 			var marker = new google.maps.Marker({
-				position: position,
+				position: {lat: parseFloat(parking.lat), lng: parseFloat(parking.long)},
 				map: that.googleMap,
 				icon: image,
 				shape: shape,
-				title: title,
+				title: parking.title,
 				parking: parking,
 				animation: google.maps.Animation.DROP
 			});
@@ -168,7 +206,6 @@
 		divSearch.slideDown(250);
 	};
 
-
 	Map.prototype.displayMap = function () {
 		var stylesArrayPaledawn = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},
 			{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},
@@ -198,25 +235,5 @@
 		this.fetchParkings();
 	};
 
-	Map.prototype.clickSearch = function () {
-		$(".search-parking-button").on("click", this.fetchSearch.bind(this));
-	};
-
-	Map.prototype.fetchSearch = function (e) {
-		e.preventDefault();
-		var weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-		for (var i = 0 ; i < weekDays.length ; i++){
-			var objectSchedule = {};
-			var day = weekDays[i];
-			var liDay = $("#" + day);
-			objectSchedule.day = liDay.children().first().attr("class");
-			var liTimeElements = liDay.find("input");
-			for (var j = 0 ; j < liTimeElements.length ; j++){
-				var key = $(liTimeElements[j]).attr("class");
-				objectSchedule[key] = $(liTimeElements[j]).val();
-			}
-			this.search.push(objectSchedule);
-		}
-	};
 
 })();

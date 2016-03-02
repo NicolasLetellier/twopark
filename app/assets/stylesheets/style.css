@@ -213,7 +213,7 @@ main {
 	border: none;
 }
 
-.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday {
+.lunes, .martes, .miercoles, .jueves, .viernes, .sabado, .domingo {
 	display: inline-block;
 	width: 60px;
 } 
