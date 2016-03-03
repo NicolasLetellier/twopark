@@ -96,12 +96,31 @@
 		return (hour + (minutes / 60));
 	};
 
-	Map.prototype.searchKey = function (parking) {
+	Map.prototype.searchUnmatchedHours = function (parking) {
 		var schedules = parking.schedules;
 		var search = this.search;
-		for (var i = 0 ; i < this.search.length ; i++ ){
-			debugger
+		var countHoursUnmatched = 0;
+		for (var i = 0 ; i < search.length ; i++ ){
+			var searchDay = search[i].day;
+			if (search[i].start_hour !== "" && search[i].start_minutes !== "" && search[i].end_hour !== "" && search[i].end_minutes !== "" ) {
+				var searchStartHour = this.decimalHours(parseInt(search[i].start_hour), parseInt(search[i].start_minutes));
+				var searchEndHour = this.decimalHours(parseInt(search[i].end_hour), parseInt(search[i].end_minutes));
+				for (var j = 0 ; j < schedules.length; j++) {
+					if (schedules[j].day === searchDay) {
+						var schedule = schedules[j];
+						var scheduleStartHour = this.decimalHours(parseInt(schedule.start_hour), parseInt(schedule.start_minutes));
+						var scheduleEndHour = this.decimalHours(parseInt(schedule.end_hour), parseInt(schedule.end_minutes));
+						if (searchStartHour < scheduleStartHour) {
+							countHoursUnmatched += (scheduleStartHour - searchStartHour);
+						}
+						if (searchEndHour > scheduleEndHour) {
+							countHoursUnmatched += (searchEndHour - scheduleEndHour);
+						}
+					}
+				}
+			}
 		}
+		parking.unmatchedHours = countHoursUnmatched;
 		return parking;
 	};
 
@@ -111,7 +130,7 @@
 		for (var i = 0; i < parkings.length; i++) {
 			if (parkings[i].available) {	
 				if (this.search.length > 0) {
-					var parking = this.searchKey(parkings[i]);
+					var parking = this.searchUnmatchedHours(parkings[i]);
 				} else {
 					var parking = parkings[i];
 				}
@@ -125,8 +144,18 @@
 		if (that.loggedIn === "true") {
 			if (parking.my_parking) {
 				var url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
+			} else if (this.search.length > 0) {
+				if (parking.unmatchedHours > 10) {
+					var url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
+				} else if (parking.unmatchedHours > 3) {
+					var url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
+				} else if (parking.unmatchedHours > 0) {
+					var url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
+				} else if (parking.unmatchedHours === 0) {
+					var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+				}
 			} else {
-				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
 			}
 		} else {
 			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";

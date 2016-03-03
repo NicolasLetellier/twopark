@@ -25,9 +25,6 @@ class ParkingsController < ApplicationController
 		end
 	end
 
-	def schedules
-	end
-
 	def update
 	end
 
