@@ -5,6 +5,7 @@ class ParkingsController < ApplicationController
 
 	def show_parking
 		@parkings = Parking.all
+		@users = User.all
 	end
 
 	def new

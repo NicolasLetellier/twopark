@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:700&subset=latin-ext);
+
 body, html {
 	height: 100%;
 	width: 100%;
@@ -19,9 +21,9 @@ main {
 	left: 0;
 }
 
-
-
-/* if mobil map => width: 80%, margin: 0 10% */
+#toggleInfo p {
+	margin: 0 0 2px;
+}
 
 .navbar {
 	margin-bottom: 0; /* overwrite bootstrap */
@@ -33,6 +35,7 @@ main {
 /*	background-color: #00b369;*/
 	background-color: rgba(0,179,105,0.85);
 	color: white;
+	border-bottom: solid 2px rgba(0,179,105,0.9);
 }
 
 
@@ -48,7 +51,10 @@ main {
 }
 
 .logo-two {
+	font-family: 'Dosis', sans-serif;
 	color: white;
+	font-size: 3.3em;
+	letter-spacing: 0.01em;
 }
 
 .logo-park {
@@ -90,16 +96,17 @@ main {
 }
 
 .info-parking, .search-parking, .register-parking  {
-	background-color: rgba(2,126,74,0.75);
 	border-radius: 5px;
 	margin: 8px 6px 2px 6px;
 	color: white;
 }
 
 .info-parking {
+	background-color: rgba(2,126,74,0.75);
 	width: 100%;
 	padding: 8px 8px 4px 8px;
 	display: none;
+	border: solid 1px rgba(2,126,74,0.8);
 }
 
 .register-parking {
@@ -109,17 +116,21 @@ main {
 	margin-right: auto;
 	width: 250px;
 	display: none;
+	border: solid 1px rgba(150,150,150,0.35);
 }
 
 .search-parking {
+	background-color: rgba(2,126,74,0.75);
 	width: 100%;
 	padding: 8px 4px 4px 8px;
 	display: none;
+	border: solid 1px rgba(2,126,74,0.8);
 }
 
 .register-parking a {
 	font-size: 20px;
-	color: #444;
+	font-weight: bold;
+	color: #777;
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -230,9 +241,10 @@ main {
 
 .invitation {
 	background-color: rgba(255,234,158,0.75);
+	border: solid 1px rgba(150,150,150,0.35);
 	width: 100%;
 	border-radius: 5px;
-	margin: 6px;
+	margin: 8px 6px 2px 6px;
 	padding: 6px 6px 2px 6px;
 	display: none;
 }
