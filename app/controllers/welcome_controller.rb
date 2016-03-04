@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
 
 	def show_parking
 		@parkings = Parking.all
+		@users = User.all
 	end
 
 end

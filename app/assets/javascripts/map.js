@@ -128,7 +128,11 @@
 	Map.prototype.dropMarkers = function () {
 		this.clearMarkers();
 		var parkings = this.parkings;
-		var users = this.users;
+		if (this.loggedIn) {
+			var users = this.users;
+		} else {
+			var users = undefined;
+		}
 		for (var i = 0; i < parkings.length; i++) {
 			if (parkings[i].available) {	
 				if (this.search.length > 0) {
@@ -195,11 +199,13 @@
 		var parking = this.parking;
 		var userId = parking.user_id;
 		var owner;
-		this.users.forEach(function(user){
-			if (user.id === userId){
-				owner = user;
-			}
-		});
+		if (this.users !== undefined){
+			this.users.forEach(function(user){
+				if (user.id === userId){
+					owner = user;
+				}
+			});	
+		}
 		var htmlContent = "<p class='parking-title'>"
 			+ parking.title
 			+ "</p>"

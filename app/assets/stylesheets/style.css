@@ -21,10 +21,6 @@ main {
 	left: 0;
 }
 
-#toggleInfo p {
-	margin: 0 0 2px;
-}
-
 .navbar {
 	margin-bottom: 0; /* overwrite bootstrap */
 	background-color: transparent;
@@ -109,6 +105,14 @@ main {
 	border: solid 1px rgba(2,126,74,0.8);
 }
 
+#toggleInfo p {
+	margin: 0;
+}
+
+.address-info {
+	font-style: italic;
+}
+
 .register-parking {
 	padding: 10px 20px 12px 20px;
 	background-color: rgba(255,234,158,0.75);
@@ -143,21 +147,27 @@ main {
 .parking-title {
 	font-size: 18px;
 	font-weight: bold;
-	margin: 0 0 8px;
+	margin: 0 0 6px;
 }
 
 .parking-price, .parking-hours {
 	font-size: 18px;
-	margin: 0 0 8px;
 }
 
+.parking-price {
+	margin: 0;
+}
+
+.parking-hours {
+	margin: 0 0 8px;
+}
 .info-parking hr {
 	margin: 0 0 4px 0;
 }
 
 .search-parking h3 {
 	font-size: 20px;
-	margin: 0 0 10px;
+	margin: 0 0 6px;
 	width: 100%;
 	text-align: center;
 }
@@ -231,7 +241,7 @@ main {
 
 .wrap-btn {
 	width: 65px;
-	margin: 4px auto 2px auto;
+	margin: 2px auto 1px auto;
 }
 
 .wrap-search {
