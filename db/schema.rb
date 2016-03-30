@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160228215714) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "parkings", force: :cascade do |t|
     t.string   "title"
     t.float    "price"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20160228215714) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "parkings", ["user_id"], name: "index_parkings_on_user_id"
+  add_index "parkings", ["user_id"], name: "index_parkings_on_user_id", using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.string   "day"
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160228215714) do
     t.integer  "end_minutes"
   end
 
-  add_index "schedules", ["parking_id"], name: "index_schedules_on_parking_id"
+  add_index "schedules", ["parking_id"], name: "index_schedules_on_parking_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",               default: "", null: false
@@ -60,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160228215714) do
     t.integer  "telefon"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "parkings", "users"
+  add_foreign_key "schedules", "parkings"
 end
