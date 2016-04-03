@@ -47,17 +47,17 @@ Parking.create(title: "Plaza barata para compartir pocas horas", price: 30, stre
 	comments: "Plaza disponible para pocas horas cada dia, por esto esta propuesta a un precio interesante.", user_id: 2 )
 
 
-Schedule.create(day: "lunes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 1)
-Schedule.create(day: "martes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 1)
-Schedule.create(day: "miercoles", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 1)
-Schedule.create(day: "jueves", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 1)
-Schedule.create(day: "viernes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 1)
+Schedule.create(day: "lunes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 11)
+Schedule.create(day: "martes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 11)
+Schedule.create(day: "miercoles", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 11)
+Schedule.create(day: "jueves", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 11)
+Schedule.create(day: "viernes", start_hour: 8, start_minutes: 30, end_hour: 18, end_minutes: 30, parking_id: 11)
 
-Schedule.create(day: "lunes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 2)
-Schedule.create(day: "martes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 2)
-Schedule.create(day: "miercoles", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 2)
-Schedule.create(day: "jueves", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 2)
-Schedule.create(day: "viernes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 2)
+Schedule.create(day: "lunes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 12)
+Schedule.create(day: "martes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 12)
+Schedule.create(day: "miercoles", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 12)
+Schedule.create(day: "jueves", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 12)
+Schedule.create(day: "viernes", start_hour: 9, start_minutes: 30, end_hour: 17, end_minutes: 30, parking_id: 12)
 
 Schedule.create(day: "lunes", start_hour: 10, start_minutes: 15, end_hour: 17, end_minutes: 0, parking_id: 3)
 Schedule.create(day: "martes", start_hour: 10, start_minutes: 15, end_hour: 17, end_minutes: 0, parking_id: 3)
