@@ -14,26 +14,6 @@
 		this.users = [];
 	};
 
-	Map.prototype.getLocation = function () {
-		if ("geolocation" in navigator) {
-			navigator.geolocation.getCurrentPosition(this.onLocation.bind(this), this.onError.bind(this), this.options);
-		} else {
-			console.log("Geolocation is not available (default map center on Barcelona)")
-			this.defaultLocation.bind(this)();
-		}
-	};
-
-	Map.prototype.onLocation = function (position) {
-		this.coordinates.latitude = position.coords.latitude;
-		this.coordinates.longitud = position.coords.longitude;
-		this.displayMap();
-	};
-
-	Map.prototype.onError = function () {
-		console.log("Getting location failed (default map center on Barcelona): " + error);
-		this.defaultLocation.bind(this)();
-	};
-
 	Map.prototype.defaultLocation = function () {
 		this.coordinates.latitude = 41.39487;
 		this.coordinates.longitud = 2.17575;
