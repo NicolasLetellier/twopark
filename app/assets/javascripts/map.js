@@ -3,15 +3,11 @@
 
 	var Map = window.TwoparkApp.Map = function () {
 		this.coordinates = {};
-		this.options = {
-			enableHighAccuracy: true
-		};
 		this.googleMap = {};
 		this.markers = [];
 		this.parkings = [];
 		this.loggedIn = $("body").attr("data-logged");
 		this.search = [];
-		this.users = [];
 	};
 
 	Map.prototype.defaultLocation = function () {
@@ -32,7 +28,6 @@
 
 	Map.prototype.filterJson = function (parkingsJson) {
 		this.parkings = parkingsJson.show_parking;
-		this.users = parkingsJson.show_user;
 		this.dropMarkers();		
 	};
 
@@ -108,11 +103,6 @@
 	Map.prototype.dropMarkers = function () {
 		this.clearMarkers();
 		var parkings = this.parkings;
-		if (this.loggedIn) {
-			var users = this.users;
-		} else {
-			var users = undefined;
-		}
 		for (var i = 0; i < parkings.length; i++) {
 			if (parkings[i].available) {	
 				if (this.search.length > 0) {
@@ -120,12 +110,12 @@
 				} else {
 					var parking = parkings[i];
 				}
-				this.createMarkersWithTimeout(parking, users, i*80);
+				this.createMarkersWithTimeout(parking, i*80);
 			}
 		};
 	};
 
-	Map.prototype.createMarkersWithTimeout = function (parking, users, timeout) {
+	Map.prototype.createMarkersWithTimeout = function (parking, timeout) {
 		var that = this;
 		if (that.loggedIn === "true") {
 			if (parking.my_parking) {
@@ -164,7 +154,6 @@
 				shape: shape,
 				title: parking.title,
 				parking: parking,
-				users : users,
 				animation: google.maps.Animation.DROP
 			});
 			marker.addListener("click", that.clickMarker);
@@ -177,15 +166,6 @@
 		var divRegister = $(".register-parking");
 		var divSearch = $(".search-parking");
 		var parking = this.parking;
-		var userId = parking.user_id;
-		var owner;
-		if (this.users !== undefined){
-			this.users.forEach(function(user){
-				if (user.id === userId){
-					owner = user;
-				}
-			});	
-		}
 		var htmlContent = "<p class='parking-title'>"
 			+ parking.title
 			+ "</p>"
@@ -218,8 +198,8 @@
 				+ ", " + parking.postal_code + " " + parking.city
 				+ ", " + parking.country
 				+ "</p>"
-				+ "<p>Usuario: <strong>" + owner.name + "</strong></p>"
-				+ "<p><strong>" + owner.email + " / " + owner.telefon + "</strong></p>"
+				+ "<p>Usuario: <strong>" + parking.owner_name + "</strong></p>"
+				+ "<p><strong>" + parking.owner_email + " / " + parking.owner_telefon + "</strong></p>"
 				+ "</div>";
 				// + "<p class='info-parking-more'>( +/- información )</p>";
 		} else {

@@ -16,6 +16,9 @@ json.show_parking @parkings do |parking|
 	json.city parking.city
 	json.country parking.country
 
+	json.owner_name parking.user.name
+	json.owner_email parking.user.email
+	json.owner_telefon parking.user.telefon
 
 	json.schedules parking.schedules do |schedule|
 		json.day schedule.day
@@ -24,11 +27,5 @@ json.show_parking @parkings do |parking|
 		json.end_hour schedule.end_hour
 		json.end_minutes schedule.end_minutes
 	end
-end
 
-json.show_user @users do |user|
-	json.id user.id
-	json.name user.name
-	json.email user.email
-	json.telefon user.telefon
 end
