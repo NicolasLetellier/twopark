@@ -42,14 +42,13 @@
 		$(".search-parking-button").on("click", this.fetchSearch.bind(this));
 	};
 
-	Map.prototype.fetchSearch = function (e) {
-		e.preventDefault();
+	Map.prototype.fetchSearch = function (event) {
+		event.preventDefault();
 		this.search = [];
 		var weekDays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 		for (var i = 0 ; i < weekDays.length ; i++){
 			var objectSchedule = {};
-			var day = weekDays[i];
-			var liDay = $("#" + day);
+			var liDay = $("#" + weekDays[i]);
 			objectSchedule.day = liDay.children().first().attr("class");
 			var liTimeElements = liDay.find("input");
 			for (var j = 0 ; j < liTimeElements.length ; j++){
@@ -201,7 +200,6 @@
 				+ "<p>Usuario: <strong>" + parking.owner_name + "</strong></p>"
 				+ "<p><strong>" + parking.owner_email + " / " + parking.owner_telefon + "</strong></p>"
 				+ "</div>";
-				// + "<p class='info-parking-more'>( +/- información )</p>";
 		} else {
 			var divInvitation = $(".invitation");
 			htmlContent += "<p class='parking-hours'>Horas disponibles durante la semana: <strong>"
