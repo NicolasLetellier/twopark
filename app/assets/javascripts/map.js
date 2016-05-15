@@ -33,7 +33,7 @@
 
 	Map.prototype.clearMarkers = function () {
 		for (var i = 0; i < this.markers.length; i++) {
-		this.markers[i].setMap(null);
+			this.markers[i].setMap(null);
 		}
 		this.markers = [];
 	};
@@ -64,16 +64,18 @@
 		return (hour + (minutes / 60));
 	};
 
-	Map.prototype.searchUnmatchedHours = function (parking) {
+	Map.prototype.percentSearchMatching = function (parking) {
 		var schedules = parking.schedules;
 		var search = this.search;
 		var countHoursUnmatched = 0;
+		var totalHoursSearch = 0;
 		for (var i = 0 ; i < search.length ; i++ ){
 			var searchDay = search[i].day;
 			var checkDayMatch = false;
 			if (search[i].start_hour !== "" && search[i].start_minutes !== "" && search[i].end_hour !== "" && search[i].end_minutes !== "" ) {
 				var searchStartHour = this.decimalHours(parseInt(search[i].start_hour), parseInt(search[i].start_minutes));
 				var searchEndHour = this.decimalHours(parseInt(search[i].end_hour), parseInt(search[i].end_minutes));
+				totalHoursSearch += (searchEndHour - searchStartHour);
 				for (var j = 0 ; j < schedules.length; j++) {
 					if (schedules[j].day === searchDay) {
 						checkDayMatch = true;
@@ -91,27 +93,23 @@
 				if (!checkDayMatch) {
 					countHoursUnmatched += (searchEndHour - searchStartHour);
 				}
-			} else {
-			console.log("Uncompleted details for day: " + searchDay);
 			}
 		}
-		parking.unmatchedHours = countHoursUnmatched;
+		parking.percentMatching = ((totalHoursSearch - countHoursUnmatched) / totalHoursSearch * 100);
 		return parking;
 	};
 
-	Map.prototype.dropMarkers = function () {
+	Map.prototype.dropMarkers = function() {
 		this.clearMarkers();
 		var parkings = this.parkings;
 		for (var i = 0; i < parkings.length; i++) {
-			if (parkings[i].available) {	
-				if (this.search.length > 0) {
-					var parking = this.searchUnmatchedHours(parkings[i]);
-				} else {
-					var parking = parkings[i];
-				}
-				this.createMarkersWithTimeout(parking, i*80);
+			if (this.search.length > 0) {
+				var parking = this.percentSearchMatching(parkings[i]);
+			} else {
+				var parking = parkings[i];
 			}
-		};
+			this.createMarkersWithTimeout(parking, i*80);
+		}
 	};
 
 	Map.prototype.createMarkersWithTimeout = function (parking, timeout) {
@@ -120,13 +118,13 @@
 			if (parking.my_parking) {
 				var url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
 			} else if (this.search.length > 0) {
-				if (parking.unmatchedHours > 10) {
+				if (parking.percentMatching < 50) {
 					var url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
-				} else if (parking.unmatchedHours > 3) {
+				} else if (parking.percentMatching < 75) {
 					var url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
-				} else if (parking.unmatchedHours > 0) {
+				} else if (parking.percentMatching < 100) {
 					var url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
-				} else if (parking.unmatchedHours === 0) {
+				} else if (parking.percentMatching === 100) {
 					var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
 				}
 			} else {
