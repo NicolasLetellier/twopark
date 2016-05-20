@@ -17,10 +17,11 @@
 	};
 
 	Map.prototype.fetchParkings = function () {
+		var url = "";
 		if (this.loggedIn === "true") {
-			var url = "/parkings/show_parking.json";
+			url = "/parkings/show_parking.json";
 		} else {
-			var url = "/welcome/show_parking.json";
+			url = "/welcome/show_parking.json";
 		}
 		var promise = $.get(url);
 		promise.done(this.filterJson.bind(this));
@@ -102,11 +103,12 @@
 	Map.prototype.dropMarkers = function() {
 		this.clearMarkers();
 		var parkings = this.parkings;
+		var parking = {};
 		for (var i = 0; i < parkings.length; i++) {
 			if (this.search.length > 0) {
-				var parking = this.percentSearchMatching(parkings[i]);
+				parking = this.percentSearchMatching(parkings[i]);
 			} else {
-				var parking = parkings[i];
+				parking = parkings[i];
 			}
 			this.createMarkersWithTimeout(parking, i*80);
 		}
@@ -114,24 +116,25 @@
 
 	Map.prototype.createMarkersWithTimeout = function (parking, timeout) {
 		var that = this;
+		var url = "";
 		if (that.loggedIn === "true") {
 			if (parking.my_parking) {
-				var url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
+				url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
 			} else if (this.search.length > 0) {
 				if (parking.percentMatching < 50) {
-					var url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
+					url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
 				} else if (parking.percentMatching < 75) {
-					var url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
+					url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
 				} else if (parking.percentMatching < 100) {
-					var url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
+					url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
 				} else if (parking.percentMatching === 100) {
-					var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
+					url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
 				}
 			} else {
-				var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
 			}
 		} else {
-			var url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+			url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
 		}
 		window.setTimeout(function(){
 			var image = {
