@@ -1,27 +1,110 @@
+
 			<div class="container-fluid subnavibar">
-			  <%= bootstrap_flash %>
-			  <div class="row subnavibar-row">
-			    <div class="col-sm-6 col-md-5 col-lg-4">
-			      <div class="info-parking">
-			      </div>
-			    </div>
-			    <div class="col-sm-6 col-md-7 col-lg-8">
-			    	<div class="invitation">
-				    	<p class="invitation-title">Quieres saber más detalles sobre cada parking?</p>
-				    	<p class="invitation-links">
-					    	<%= link_to "Iniciar sessión", new_user_session_path %>
-		            <span> | </span>
-		            <%= link_to "Nuevo usuario", new_user_registration_path %>
-		          </p>
-	          </div>
-			    </div>
-			  </div>
-		  </div>
+				<%= bootstrap_flash %>
+				<div class="row subnavibar-row">
+					<div class="col-sm-4 col-md-3">
+						<div class="info-parking">
+						</div>
+					</div>
+<!-- 					<div class="col-sm-6 col-md-7 col-lg-8">
+						<div class="invitation">
+							<p class="invitation-title">Quieres saber más detalles sobre cada parking?</p>
+							<p class="invitation-links">
+								<%= link_to "Iniciar sessión", new_user_session_path %>
+								<span> | </span>
+								<%= link_to "Nuevo usuario", new_user_registration_path %>
+							</p>
+						</div>
+					</div> -->
+					
+					<div class="col-sm-4 col-md-4 col-md-offset-1">
+						<div class="register-parking">
+							<%= link_to "Anunciar un parking", new_parking_path %>
+						</div>
+					</div>
+					<div class="col-sm-4 col-md-3 col-md-offset-1">
+						<div class="search-parking">
+							<h3>Busca un parking por horarios:</h3>
+							<div class="wrap-search">
+								<ul class="search-parking-schedule">
+									<li class="search-parking-headers">
+										<span class="header-day">Dia</span>
+										<span class="header-de">De:</span>
+										<span class="header-slash">/</span>
+										<span class="header-hasta">Hasta:</span>
+									</li>
+									<li class="search-parking-headers">
+										<span class="header-start-hour">Hora</span>
+										<span class="header-start-minutes">Min.</span>
+										<span class="header-end-hour">Hora</span>
+										<span class="header-end-minutes">Min.</span>
+									</li>
+									<li class="search-parking-details" id="monday">
+										<span class="lunes">Lunes</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="tuesday">
+										<span class="martes">Martes</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="wednesday">
+										<span class="miercoles">Miercoles</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="thursday">
+										<span class="jueves">Jueves</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="friday">
+										<span class="viernes">Viernes</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="saturday">
+										<span class="sabado">Sabado</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+									<li class="search-parking-details" id="sunday">
+										<span class="domingo">Domingo</span>
+										<input type="number" min="0" max="24" step="1" class="start_hour">
+										<input type="number" min="0" max="59" step="1" class="start_minutes">
+										<input type="number" min="0" max="24" step="1" class="end_hour"></span>
+										<input type="number" min="0" max="59" step="1" class="end_minutes"></span>
+									</li>
+
+								
+								</ul>
+								<div class="wrap-btn">
+									<button class="btn btn-default btn-sm search-parking-button">Buscar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
 
-    <div class="container-fluid">
+		<div class="container-fluid">
 
-      <div class="main">
+			<div class="main">
 
 				<div id="map"></div>
 

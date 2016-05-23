@@ -117,21 +117,17 @@
 	Map.prototype.createMarkersWithTimeout = function (parking, timeout) {
 		var that = this;
 		var url = "";
-		if (that.loggedIn === "true") {
-			if (parking.my_parking) {
-				url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
-			} else if (this.search.length > 0) {
-				if (parking.percentMatching < 50) {
-					url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
-				} else if (parking.percentMatching < 75) {
-					url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
-				} else if (parking.percentMatching < 100) {
-					url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
-				} else if (parking.percentMatching === 100) {
-					url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
-				}
-			} else {
-				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
+		if (that.loggedIn === "true" && parking.my_parking) {
+			url = "http://www.perso.nicolasletellier.com/twopark/markergris.png";
+		} else if (this.search.length > 0) {
+			if (parking.percentMatching < 50) {
+				url = "http://www.perso.nicolasletellier.com/twopark/markerorange.png";
+			} else if (parking.percentMatching < 75) {
+				url = "http://www.perso.nicolasletellier.com/twopark/markerjaune.png";
+			} else if (parking.percentMatching < 100) {
+				url = "http://www.perso.nicolasletellier.com/twopark/markervert.png";
+			} else if (parking.percentMatching === 100) {
+				url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkgris.png";
 			}
 		} else {
 			url = "http://www.perso.nicolasletellier.com/twopark/markertwoparkfull.png";
@@ -173,40 +169,34 @@
 			+ parking.price
 			+ " €</strong></p>"
 			+ "<hr>";
+		var schedule = "";
+		for (var i = 0 ; i < parking.schedules.length ; i++ ) {
+			schedule += "<p class='schedule-details'><span class='schedule-day'>"
+			+ parking.schedules[i].day
+			+ " : </span>"
+			+ "<span class='schedule.hours'>"
+			+ parking.schedules[i].start_hour
+			+ ":"
+			+ parking.schedules[i].start_minutes
+			+ " / "
+			+ parking.schedules[i].end_hour
+			+ ":"
+			+ parking.schedules[i].end_minutes
+			+ "</span></p>";
+		}
+		htmlContent += "<p class='schedule-title'>Disponibilidad:</p>"
+			+ schedule
+			+ "<div id='toggleInfo'>"
+			+ "<hr>"
+			+ "<p class='address-info'>Dirrección: " + parking.street_name
+			+ ", " + parking.street_number
+			+ ", " + parking.postal_code + " " + parking.city
+			+ ", " + parking.country
+			+ "</p>";
 		if ($("body").attr("data-logged") === "true") {
-			var schedule = "";
-			for (var i = 0 ; i < parking.schedules.length ; i++ ) {
-				schedule += "<p class='schedule-details'><span class='schedule-day'>"
-				+ parking.schedules[i].day
-				+ " : </span>"
-				+ "<span class='schedule.hours'>"
-				+ parking.schedules[i].start_hour
-				+ ":"
-				+ parking.schedules[i].start_minutes
-				+ " / "
-				+ parking.schedules[i].end_hour
-				+ ":"
-				+ parking.schedules[i].end_minutes
-				+ "</span></p>";
-			}
-			htmlContent += "<p class='schedule-title'>Disponibilidad:</p>"
-				+ schedule
-				+ "<div id='toggleInfo'>"
-				+ "<hr>"
-				+ "<p class='address-info'>Dirrección: " + parking.street_name
-				+ ", " + parking.street_number
-				+ ", " + parking.postal_code + " " + parking.city
-				+ ", " + parking.country
-				+ "</p>"
-				+ "<p>Usuario: <strong>" + parking.owner_name + "</strong></p>"
-				+ "<p><strong>" + parking.owner_email + " / " + parking.owner_telefon + "</strong></p>"
-				+ "</div>";
-		} else {
-			var divInvitation = $(".invitation");
-			htmlContent += "<p class='parking-hours'>Horas disponibles durante la semana: <strong>"
-				+ parking.hours
-				+ "</strong>h";
-			divInvitation.slideDown(250);
+			htmlContent += "<p>Usuario: <strong>" + parking.owner_name + "</strong></p>"
+			+ "<p><strong>" + parking.owner_email + " / " + parking.owner_telefon + "</strong></p>"
+			+ "</div>";
 		}
 		if (divDisplay.html() != "") {
 			divDisplay.fadeOut(150, function(){
